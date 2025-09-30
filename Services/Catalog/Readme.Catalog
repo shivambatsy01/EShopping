@@ -1,0 +1,79 @@
+There are 5 packages :
+- API : Backed APIs for Catalog
+- Application : Not sure, perhaps Frontend service
+- Core : Core Business logic, Object and classes implementation and Repository definition
+- Infrastructure : DB, Infra and implementation of DB layer
+- Test : Unit tests
+
+Dependency and references : (which project/package needs to be build before current package)
+- API : No reference
+- Application : Core
+- Core : Mongo etc 
+- Infrastructure : Application, Core
+
+Core : P0
+API : P0
+Application : P1
+Infrastructure : P2
+
+
+Following clean architecture : 
+Repositories Interfaces are declared in Core but implemented in Infrastructure project. 
+Suppose in future we want to migrate to other Database, it would be easy
+Core : Business Logic,
+Infrastructure : All other backend activities. 
+
+
+---------------------------------------------------
+Clean architecture basically has 4-5 project layers :
+
+1. Core or Domain layer (Class Library) : Contains entity/model and business logic details
+2. Application Layer (Class Library CQRS) : Handlers/Command and Queries, Contains the operations and business logic, Also contains contracts to be implemented by infrastructure layer
+3. Infrastructure Layer (class Library) : Contains the implementation of DB or persistent layer
+4. API Layer (MVC API project) : Wrapper over Application layer 
+5. Test Layer (Testing projects) : Unit and integration tests
+
+
+Dependency graph in clean architecture : (Application and Infrastructure are business orchestrators)
+
+- Core or domain layer is independent of any dependency but every other layer references it directly or indirectly
+- Application layer is dependant on Core and has Contracts defined to be implemented in Infrastructure
+- Infrastructure is dependant on Core And Application layer because the contracts(Repository etc) defined in Application are implemented in Infrastructure
+- API is dependant on Application layer and Infrastructure (in some cases)
+- Unit test case project is dependant on Application layer
+- Integration test project is dependant on Infrastructure layer
+
+
+
+-------------------------------------------------
+-------------------------------------------------
+# 🔑 Layers in Clean Architecture : 
+A typical .NET solution might map layers like this:
+
+## 🟦 Entities (Domain Layer)
+- Pure business rules, enterprise-wide logic.  
+- No dependencies on any other project.  
+- Should be completely framework-agnostic.  
+
+## 🟨 Use Cases / Application Layer
+- Application-specific business rules (e.g., services, use case orchestrators).  
+- Depends only on the Domain layer.  
+- Contains interfaces for persistence, messaging, etc.  
+
+## 🟩 Interface Adapters (Infrastructure Layer)
+- Implements interfaces defined in the Application layer (e.g., repositories, email senders).  
+- Can depend on Application and Domain.  
+- Contains external details (EF Core, web APIs, file system).  
+
+## 🟥 Presentation Layer (Web / UI)
+- ASP.NET Core web project, UI, API controllers.  
+- Depends on Application (and indirectly on Domain).  
+- Contains framework details and dependency injection setup.  
+
+
+-------------------------------------------------
+-------------------------------------------------
+Why we have Command-Query segregation :
+If read and write frequencies are different, then we have separate DBs for reads and writes.
+We implement two different repositories and we sync both the DBs eventually using some external Job or other mechanisms.
+Service code just focus on read and write data from two separate DBs.
