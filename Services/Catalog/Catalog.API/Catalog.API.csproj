@@ -9,6 +9,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
+        <PackageReference Include="AutoMapper" Version="15.0.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.3" />
+        <PackageReference Include="NMediator.Extensions.Microsoft.DependencyInjection" Version="1.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
     </ItemGroup>
 
@@ -20,7 +27,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Catalog.Application\Catalog.Application.csproj" />
-      <ProjectReference Include="..\Catalog.Infra\Catalog.Infra.csproj" />
+      <ProjectReference Include="..\Catalog.Infrastrucure\Catalog.Infrastrucure.csproj" />
     </ItemGroup>
 
 </Project>

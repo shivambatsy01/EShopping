@@ -1,0 +1,5 @@
+Application Layer :
+Mediator or orchestrator for the Microservices
+
+This project Implements CQRS : Command Query Responsibility Segregation architecture pattern
+This comes under clean architecture.

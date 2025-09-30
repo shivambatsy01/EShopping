@@ -1,0 +1,22 @@
+[
+  { "Id": "650f0a1b2d3a4b5c6d7e8f01", "BrandName": "Nike" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f02", "BrandName": "Adidas" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f03", "BrandName": "Puma" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f04", "BrandName": "Reebok" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f05", "BrandName": "Under Armour" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f06", "BrandName": "New Balance" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f07", "BrandName": "Converse" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f08", "BrandName": "Vans" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f09", "BrandName": "Fila" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f0a", "BrandName": "ASICS" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f0b", "BrandName": "H&M" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f0c", "BrandName": "Zara" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f0d", "BrandName": "Uniqlo" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f0e", "BrandName": "Levi's" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f0f", "BrandName": "Gucci" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f10", "BrandName": "Prada" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f11", "BrandName": "Louis Vuitton" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f12", "BrandName": "Hermès" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f13", "BrandName": "Chanel" },
+  { "Id": "650f0a1b2d3a4b5c6d7e8f14", "BrandName": "Burberry" }
+]

@@ -1,0 +1,2 @@
+Interface of repository are declared in Core/Domain and implemented in Infrastructure.
+Generally Interfaces are declared in Application and Implemented in Infrastructure layer

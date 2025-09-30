@@ -1,0 +1,19 @@
+- Open terminal and go to the service directory EShopping/Catalog/Catalog.API
+- Run 'dotnet run' in terminal or run in IDE
+- hit "http://localhost:5284/swagger/index.html"
+
+----------Add steps for remote debugging-------
+
+
+
+
+
+
+
+To run the application, Locally or remote, this application have dependency on MongoDB instance.
+Now one way is either run the MongoDB instance locally and then update the configuration of the application to connect it to that instance,
+Else update the docker files so that while running this application in container, It starts everything into the container.
+
+So basically, Containerise everything.
+So create docker image of MongoDB, first run that image in local container and then run application natively.
+
