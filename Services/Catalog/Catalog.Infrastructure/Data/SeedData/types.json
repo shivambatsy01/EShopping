@@ -1,0 +1,22 @@
+[
+  { "Id": "651a1a1b2d3a4b5c6d7e8f01", "Name": "Shoes" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f02", "Name": "T-Shirts" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f03", "Name": "Jeans" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f04", "Name": "Jackets" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f05", "Name": "Sweatshirts" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f06", "Name": "Shorts" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f07", "Name": "Dresses" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f08", "Name": "Skirts" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f09", "Name": "Suits" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f0a", "Name": "Blazers" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f0b", "Name": "Sweaters" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f0c", "Name": "Hoodies" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f0d", "Name": "Polos" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f0e", "Name": "Socks" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f0f", "Name": "Caps" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f10", "Name": "Bags" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f11", "Name": "Belts" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f12", "Name": "Watches" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f13", "Name": "Glasses" },
+  { "Id": "651a1a1b2d3a4b5c6d7e8f14", "Name": "Jewelry" }
+]

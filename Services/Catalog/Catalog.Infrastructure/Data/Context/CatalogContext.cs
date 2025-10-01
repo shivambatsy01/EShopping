@@ -21,10 +21,6 @@ public class CatalogContext : ICatalogContext
         var productCollectionName = config["DatabaseSettings:MongoCatalog:ProductCollectionName"];
         var productBrandCollectionName = config["DatabaseSettings:MongoCatalog:ProductBrandCollectionName"];
         var productTypesCollectionName = config["DatabaseSettings:MongoCatalog:ProductTypesCollectionName"];
-        
-        //Alternate way to read from config :
-        var connectionString2 = config.GetValue<string>("DatabaseSettings:MongoCatalog:ConnectionString");
-        // these connection strings are picked from docker running instance of MongoDB
             
         var client = new MongoClient(connectionString);
         var database = client.GetDatabase(databaseName);
