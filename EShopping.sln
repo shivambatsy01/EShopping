@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Core", "Services\Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Application", "Services\Catalog\Catalog.Application\Catalog.Application.csproj", "{2A64537D-6919-4494-8E1F-A43CE27F8C0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Infrastrucure", "Services\Catalog\Catalog.Infrastrucure\Catalog.Infrastrucure.csproj", "{6FDD73C4-41CF-45BD-A40A-4C8168668E4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Infrastructure", "Services\Catalog\Catalog.Infrastructure\Catalog.Infrastructure.csproj", "{6FDD73C4-41CF-45BD-A40A-4C8168668E4A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Test", "Services\Catalog\Catalog.Test\Catalog.Test.csproj", "{02A487D8-4C36-4B30-A4AB-E62F0CE189A3}"
 EndProject

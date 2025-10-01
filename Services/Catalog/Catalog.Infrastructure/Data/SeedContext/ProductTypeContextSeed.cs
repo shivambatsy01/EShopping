@@ -7,9 +7,14 @@ namespace Catalog.Infra.Data;
 
 public static class ProductTypeContextSeed
 {
-    private static readonly string Path = "Data/SeedData/types.json";
+    private static readonly string[] ProductTypeFilePathParts = new string[]
+    {
+        "Data",
+        "SeedData",
+        "types.json"
+    };
     public static void SeedData(IMongoCollection<ProductType> typeCollection)
     {
-        Seeder.SeedData(typeCollection, Path);
+        Seeder.SeedData(typeCollection, ProductTypeFilePathParts);
     }
 }
