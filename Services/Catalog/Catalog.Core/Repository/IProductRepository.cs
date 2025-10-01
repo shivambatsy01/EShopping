@@ -1,4 +1,5 @@
 using Catalog.Core.Entities;
+using Catalog.Core.Specs;
 
 namespace Catalog.Core.Repository;
 
@@ -6,7 +7,7 @@ public interface IProductRepository
 {
     Task<Product> GetProductById(string id); //id is in base entity
     
-    Task<IEnumerable<Product>> GetAllProducts();
+    Task<Pagination<Product>> GetAllProducts(CatalogSpecParams catalogSpecParams);
     
     Task<IEnumerable<Product>> GetProductsByName(string name);
     

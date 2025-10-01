@@ -1,5 +1,7 @@
 using Catalog.Core.Entities;
+using Catalog.Core.Specs;
 using Catalog.Infra.Data.SeedData.Context;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Catalog.Core.Repository.RepositoryImplementations;
@@ -26,12 +28,47 @@ public class ProductRepository : IProductRepository, IBrandRepository, ITypesRep
             .FirstOrDefaultAsync();
     }
     
-    public async Task<IEnumerable<Product>> GetAllProducts()
+    public async Task<Pagination<Product>> GetAllProducts(CatalogSpecParams catalogSpecParams)
     {
-        return await _context
-            .Products
-            .Find(p => true)
+        var builder = Builders<Product>.Filter;
+        var filter = builder.Empty;
+
+        // Filtering
+        if (!string.IsNullOrWhiteSpace(catalogSpecParams.Search))
+        {
+            filter &= builder.Regex(p => p.Name, new BsonRegularExpression(catalogSpecParams.Search, "i"));
+        }
+        if (!string.IsNullOrWhiteSpace(catalogSpecParams.BrandId))
+        {
+            filter &= builder.Eq(p => p.ProductBrand.Id, catalogSpecParams.BrandId);
+        }
+        if (!string.IsNullOrWhiteSpace(catalogSpecParams.TypeId))
+        {
+            filter &= builder.Eq(p => p.ProductType.Id, catalogSpecParams.TypeId);
+        }
+
+        // Sorting
+        var sortDefinition = GetSortDefinition(catalogSpecParams.Sort);
+
+        // Query Call with Pagination
+        var items = await _context.Products
+            .Find(filter)
+            .Sort(sortDefinition)
+            .Skip(catalogSpecParams.PageSize * (catalogSpecParams.PageIndex - 1)) //Mathematics of pagination
+            .Limit(catalogSpecParams.PageSize)
             .ToListAsync();
+        
+        var totalItems = await _context.Products.CountDocumentsAsync(p => true); //all products count
+
+        // Return paginated result
+        return new Pagination<Product>
+        {
+            PageIndex = catalogSpecParams.PageIndex,
+            PageSize = catalogSpecParams.PageSize,
+            Count = (int)totalItems,
+            Items = items,
+            MatchingItemsCount = items.Count
+        };
     }
     
     public async Task<IEnumerable<Product>> GetProductsByName(string name)
@@ -93,5 +130,19 @@ public class ProductRepository : IProductRepository, IBrandRepository, ITypesRep
     public async Task<IEnumerable<ProductType>> GetAllProductTypes()
     {
         return await _context.ProductTypes.Find(p => true).ToListAsync();
+    }
+    
+    private SortDefinition<Product> GetSortDefinition(string? sort)
+    {
+        if (string.IsNullOrWhiteSpace(sort))
+            return Builders<Product>.Sort.Ascending(p => p.Name); // default sort
+
+        return sort.ToLower() switch
+        {
+            "name" => Builders<Product>.Sort.Ascending(p => p.Name),
+            "priceasc" => Builders<Product>.Sort.Ascending(p => p.Price),
+            "pricedesc" => Builders<Product>.Sort.Descending(p => p.Price),
+            _ => Builders<Product>.Sort.Ascending(p => p.Name) // fallback
+        };
     }
 }
