@@ -77,3 +77,13 @@ Why we have Command-Query segregation :
 If read and write frequencies are different, then we have separate DBs for reads and writes.
 We implement two different repositories and we sync both the DBs eventually using some external Job or other mechanisms.
 Service code just focus on read and write data from two separate DBs.
+
+
+
+
+--------------------------------------------------------------------
+For basket.API : 
+
+Docker port : 8080 (Dockerfile in Catalog.API)
+Local port mapping to docker port : 9000 (docker-compose.yml of global application, To run all containers)
+Application starting in IDE : 5284 (launchSettings.Json in Catalog.API)
