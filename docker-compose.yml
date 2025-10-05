@@ -13,6 +13,20 @@ services:
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
     ports:
       - "9000:8080"
+        
+  basketdb:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+  
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: Services/Basket/Basket.API/Dockerfile
+    ports:
+      - "9001:8081"
+  
 
 volumes:
   mongo_data:
