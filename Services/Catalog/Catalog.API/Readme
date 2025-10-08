@@ -2,6 +2,8 @@
 - Run 'dotnet run' in terminal or run in IDE
 - hit "http://localhost:5284/swagger/index.html"
 
+
+In Docker Container, this application will run on port 9000:80 (See dockerfile and Docker-compose.override)
 ----------Add steps for remote debugging-------
 
 
