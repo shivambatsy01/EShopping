@@ -26,9 +26,19 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postresql/data/
+        
+  portainer:
+    container_name: portainer
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
       
-  pgadmin:
-    container_name: pgadmin
+  pg_admin:
+    container_name: pg_admin
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@eShop.net
       - PGADMIN_DEFAULT_PASSWORD=admin1234
@@ -42,7 +52,6 @@ services:
     container_name: catalog.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      #      - ASPNETCORE_URLS=http://*:9000
       - "DatabaseSettings__ConnectionString=mongodb://catalogdb:27017"
       - "DatabaseSettings__DatabaseName=ProductCatalogDb"
       - "DatabaseSettings__CollectionName=Products"
@@ -51,7 +60,7 @@ services:
     depends_on:
       - catalogdb
     ports:
-      - "9000:8080"
+      - "9000:80"
         
   basket.api:
     container_name: basket.api
@@ -61,7 +70,7 @@ services:
     depends_on:
       - basketdb
     ports:
-      - "9001:8081"
+      - "9001:80"
   
   discount.api:
     container_name: discount.api
@@ -71,5 +80,5 @@ services:
     depends_on:
       - basketdb
     ports:
-      - "9001:8081"
+      - "9002:80"
     
