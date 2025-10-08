@@ -5,7 +5,19 @@ services:
     image: mongo
     ports:
       - "27017:27017"
+  
+  basketdb:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
     
+  discountdb:
+    image: postgres
+  
+  pg_admin:
+    image: dpage/pgadmin4
+    
+        
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
@@ -13,11 +25,6 @@ services:
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
     ports:
       - "9000:8080"
-        
-  basketdb:
-    image: redis:alpine
-    ports:
-      - "6379:6379"
   
   basket.api:
     image: ${DOCKER_REGISTRY-}basketapi
@@ -27,6 +34,15 @@ services:
     ports:
       - "9001:8081"
   
+  discount.api:
+    image: ${DOCKER_REGISTRY-}discountapi
+    build:
+      context: .
+      dockerfile: Services/Discount/Discount.API/Dockerfile
+  
 
 volumes:
   mongo_data:
+  portainer_data:
+  postgres_data:
+  pgadmin_data:

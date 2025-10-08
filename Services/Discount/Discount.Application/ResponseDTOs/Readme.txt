@@ -1,0 +1,1 @@
+Responses will be defined in gRPC proto file itself
