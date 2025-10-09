@@ -24,7 +24,7 @@ public static class DbExtension
             }
             catch (Exception e)
             {
-                
+                logger.LogError($"Discount DB migration failed with exception : {e.ToString()}");
             }
         }
         
@@ -33,7 +33,7 @@ public static class DbExtension
 
     private static void ApplyMigrations(IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        var connectionString = configuration["DatabaseSettings:postgres:ConnectionString"];
         var connection = new NpgsqlConnection(connectionString);
         connection.Open();
 
@@ -51,10 +51,10 @@ public static class DbExtension
         cmd.ExecuteNonQuery();
         
         
-        cmd.CommandText = "INSERT INTO CCoupon(ProductName, Description, Amount) VALUES('Adidas Quick Force Indoor Badminton Shoes', 'Shoe Discount', 500)";
+        cmd.CommandText = "INSERT INTO Coupon(ProductName, Description, Amount) VALUES('Adidas Quick Force Indoor Badminton Shoes', 'Shoe Discount', 500)";
         cmd.ExecuteNonQuery();
         
-        cmd.CommandText = "INSERT INTO CCoupon(ProductName, Description, Amount) VALUES('Yonex vCore Pro 100 A Tennis Racquet (270gm Strung)', 'Racquet Discount', 300)";
+        cmd.CommandText = "INSERT INTO Coupon(ProductName, Description, Amount) VALUES('Yonex vCore Pro 100 A Tennis Racquet (270gm Strung)', 'Racquet Discount', 300)";
         cmd.ExecuteNonQuery();
     }
 }
