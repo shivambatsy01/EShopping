@@ -16,7 +16,18 @@ public class GetAllTypesQueryHandler : IRequestHandler<GetAllTypesQuery, IList<T
     
     public async Task<IList<TypeResponse>> Handle(GetAllTypesQuery request, CancellationToken cancellationToken)
     {
-        var typesList = await _typesRepository.GetAllProductTypes();
-        return MapperExtension.Mapper.Map<IList<TypeResponse>>(typesList);
+        try
+        {
+            Console.WriteLine("Handling GetAllTypesQuery ................");
+            var typesList = await _typesRepository.GetAllProductTypes();
+            return MapperExtension.Mapper.Map<IList<TypeResponse>>(typesList);
+        }
+        catch (Exception ex)
+        {
+            //log exception
+            Console.WriteLine($"Error in GetAllTypesQueryHandler: {ex.Message}");
+            throw;
+        }
+        
     }
 }

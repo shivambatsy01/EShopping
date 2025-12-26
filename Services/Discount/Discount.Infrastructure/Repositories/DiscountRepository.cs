@@ -2,6 +2,7 @@ using Dapper;
 using Discount.Core.Entities;
 using Discount.Core.Repositories;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Npgsql;
 
 namespace Discount.Infrastructure.Repositories;
@@ -9,15 +10,24 @@ namespace Discount.Infrastructure.Repositories;
 public class DiscountRepository : IDiscountRepository
 {
     private readonly IConfiguration _configuration;
-    public DiscountRepository(IConfiguration configuration)
+    private readonly ILogger<DiscountRepository> _logger;
+    public DiscountRepository(IConfiguration configuration, ILogger<DiscountRepository> logger)
     {
         this._configuration = configuration;
+        this._logger = logger;
     }
     
     public async Task<Coupon> GetCoupon(string productName)
     {
         //Can we use DBContext for below command statements ?
-        await using var connection = new NpgsqlConnection(_configuration.GetConnectionString("DatabaseSettings:postgres:ConnectionString"));
+        _logger.LogInformation($"Getting coupon for productName: {productName} from database.");
+        var connectionString = _configuration.GetValue<string>("DatabaseSettings:postgres:ConnectionString");
+
+        _logger.LogInformation($"Connection String: {connectionString}");
+        _logger.LogInformation($"Setting up connection with database......");
+        await using var connection = new NpgsqlConnection(connectionString);
+        _logger.LogInformation($"connection created successfully.");
+
         var coupon = await connection.QueryFirstOrDefaultAsync<Coupon>
             ("SELECT * FROM Coupon WHERE ProductName = @ProductName", new { ProductName = productName });
 
