@@ -23,9 +23,22 @@ Running application in container :
 -Container will run on 9000 and it will redirect to 8080 port on which application will be running inside the container.
 
 
----------------------------------------------
+------------------------------------------------------------------------------------------------------
 Access container application : 
 Portainer : http://localhost:9090/#!/wizard (Internally running on 9000, check using "docker logs <ContaineName>" command)
 portainer username : admin,  password : admin1234567
+Portainer is a lightweight, open-source management UI for container orchestration platforms like Docker, Docker Swarm, and Kubernetes
+
 CatalogAPI : http://localhost:9000/swagger/index.html (Internally running on 8080 of it's container)
 BasketAPI : http://localhost:9001/swagger/index.html (Internally running on 8080 of it's container)
+
+To Open UI for grpc service (DiscountAPI) running in docker, use grpc client (grpcUI)
+- configure reflections in program.cs
+- brew install grpcui (in Mac)
+- run command :   grpcui -plaintext localhost:9002, this will open a webUI in browser
+
+pgadmin : used to access docker container based postgres db server (used for discountdb) via web browser
+http://localhost:5050/login?next=/
+usename and password are in docker-compose-override.yml
+PGADMIN_DEFAULT_EMAIL=admin@eShop.net
+PGADMIN_DEFAULT_PASSWORD=admin1234

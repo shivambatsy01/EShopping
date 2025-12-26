@@ -75,9 +75,21 @@ public class CalatogController : APIBaseController
     [ProducesResponseType(typeof(TypeResponse), StatusCodes.Status200OK)]
     public async Task<ActionResult<IList<TypeResponse>>> GetAllTypes() //later implement pagination etc
     {
-        var query = new GetAllTypesQuery();
-        var result = await _mediator.Send(query);
-        return Ok(result);
+        try
+        {
+            var query = new GetAllTypesQuery();
+            Console.Write("shkshdkhwrywyryewoejlfdlsjfjldjfflsjjfoeoxmwiuqiruoie");
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            // Log the exception (you can use any logging framework)
+            //Console.WriteLine($"An error occurred: {ex.Message}");
+            Console.WriteLine($"An error occurred: inside catch");
+            return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request.");
+        }
+        
     }
     
     [HttpPost]

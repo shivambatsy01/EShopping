@@ -20,7 +20,10 @@ public class DiscountService : DiscountProtoService.DiscountProtoServiceBase //T
 
     public override async Task<CouponModel> GetDiscount(GetDiscountRequest request, ServerCallContext context)
     {
+        _logger.LogInformation($"GetDiscount API request coming.....:");
+        _logger.LogInformation($"Product Name: {request.ProductName}");
         var query = new GetDiscountQuery(request.ProductName);
+        _logger.LogInformation($"GetDiscount API query generated:");
         var response = await _mediator.Send(query);
         _logger.LogInformation($"GetDiscount API response: {response} for product name: {request.ProductName}");
         return response;
@@ -28,6 +31,7 @@ public class DiscountService : DiscountProtoService.DiscountProtoServiceBase //T
 
     public override async Task<CouponModel> CreateDiscount(CreateDiscountRequest request, ServerCallContext context)
     {
+        _logger.LogInformation($"CreateDiscount API request coming: {request}");
         var command = new CreateDiscountCommand(request.Coupon.ProductName, request.Coupon.Description, request.Coupon.Amount);
         var response = await _mediator.Send(command);
         _logger.LogInformation($"Created new discount API response: {response}");

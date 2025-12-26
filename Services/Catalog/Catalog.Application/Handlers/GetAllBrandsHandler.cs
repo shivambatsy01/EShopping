@@ -18,10 +18,20 @@ public class GetAllBrandsHandler :  IRequestHandler<GetAllBrandsQuery, IList<Bra
     
     public async Task<IList<BrandResponse>> Handle(GetAllBrandsQuery request, CancellationToken cancellationToken)
     {
-        var brandList = await _brandRepository.GetAllBrands();
-        //var brandResponseList = _mapper.Map<IList<BrandResponse>>(brandList); //no List-to-List mapping
-        //var brandResponseList = _mapper.Map<IList<BrandResponse>>(brandList); //use ForMember in mapper for List-to-List mapping
-        var brandResponseList = MapperExtension.Mapper.Map<IList<ProductBrand>, IList<BrandResponse>>(brandList.ToList());
-        return brandResponseList;
+        try
+        {
+            var brandList = await _brandRepository.GetAllBrands();
+            //var brandResponseList = _mapper.Map<IList<BrandResponse>>(brandList); //no List-to-List mapping
+            //var brandResponseList = _mapper.Map<IList<BrandResponse>>(brandList); //use ForMember in mapper for List-to-List mapping
+            var brandResponseList = MapperExtension.Mapper.Map<IList<ProductBrand>, IList<BrandResponse>>(brandList.ToList());
+            return brandResponseList;
+        }
+        catch (Exception ex)
+        {
+            //log exception
+            Console.WriteLine($"Error in GetAllBrandsHandler: {ex.Message}");
+            throw;
+        }
+        
     }
 }

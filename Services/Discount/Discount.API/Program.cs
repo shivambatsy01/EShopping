@@ -20,7 +20,7 @@ services.AddAutoMapper(cfg => { }, typeof(Program).Assembly);
 
 // Add services to the container.
 builder.Services.AddGrpc();
-
+builder.Services.AddGrpcReflection();
 
 
 var app = builder.Build();
@@ -29,6 +29,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
+    app.MapGrpcReflectionService(); //reflections to use grpc WebUI
 }
 app.UseRouting();
 
@@ -36,8 +37,8 @@ app.UseRouting();
 app.MapGrpcService<DiscountService>();
 app.MapGet("/", async context  =>
 {
-    await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client." +
-                                      " To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
+    await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client/stub." +
+                                      " To learn how to create a client/stub, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 });
 app.MigrateDatabase<Program>();
 
